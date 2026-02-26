@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Five Doors ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{
+margin:0;height:100vh;
+background:radial-gradient(circle at top,#2b1d3a,#0f0f14);
+display:flex;justify-content:center;align-items:center;
+color:#fff;overflow:hidden}
+.box{
+width:90%;max-width:420px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(12px);
+padding:25px;border-radius:16px;
+text-align:center;
+animation:fade .8s ease;
+box-shadow:0 0 30px rgba(255,92,141,.25)}
+h2{color:#ffb3c8}
+p{font-size:14px;line-height:1.6}
+input{
+width:100%;padding:12px;margin-top:15px;
+border-radius:8px;border:none;
+background:rgba(255,255,255,.15);color:#fff}
+button{
+margin-top:18px;padding:12px 22px;
+border:none;border-radius:25px;
+background:linear-gradient(135deg,#ff5c8d,#ff85a2);
+color:#fff;font-size:14px;cursor:pointer}
+.options button{width:100%;margin-top:10px}
+.door{font-size:48px;margin-bottom:10px;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{transform:scale(1.1)}}
+@keyframes fade{from{opacity:0;transform:translateY(15px)}}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kai_Engel/Irsens_Tale/Kai_Engel_-_03_-_Moonlight_Reprise.mp3">
+</audio>
+
+<div class="box" id="game"></div>
+
+<script>
+let level=1,started=false;
+const game=document.getElementById("game");
+const music=document.getElementById("music");
+
+// ANSWERS
+const door1Answer="Mythical baby";
+const door2Answer="option3";
+const door3Answer="yes";
+const door4Answer="stay";
+
+function playMusic(){
+if(!started){music.volume=.4;music.play();started=true}
+}
+
+function load(){
+playMusic();
+
+if(level===1){
+game.innerHTML=`
+<div class="door">🚪</div>
+<h2>Door 1</h2>
+<p>Whats my nickname??</p>
+<input id="i1">
+<button onclick="d1()">Unlock</button>`}
+
+if(level===2){
+game.innerHTML=`
+<div class="door">🚪</div>
+<h2>Door 2</h2>
+<p>why i love you this much?</p>
+<div class="options">
+<button onclick="d2('option1')">Because you are cute</button>
+<button onclick="d2('option2')">Because you care about me</button>
+<button onclick="d2('option3')">No reason</button>
+</div>`}
+
+if(level===3){
+game.innerHTML=`
+<div class="door">🚪</div>
+<h2>Door 3</h2>
+<p>You love me so muchhhh, rightttt?</p>
+<div class="options">
+<button onclick="d3('yes')">Yes</button>
+<button onclick="d3('no')">No</button>
+</div>`}
+
+if(level===4){
+game.innerHTML=`
+<div class="door">🚪</div>
+<h2>Door 4</h2>
+<p>No matter what happens, you will _____ with me, right?</p>
+<input id="i4">
+<button onclick="d4()">Unlock</button>`}
+
+if(level===5){
+game.innerHTML=`
+<div class="door">❤️</div>
+<h2>Final Door</h2>
+<p>
+Awlee🥰, I know you can cross this damn ease doors😋,<br>
+and thanks for understanding me this well,<br>
+may be you love me a little more than you think💗🥰
+</p>
+<p>
+I don’t need big promises or perfect words.<br>
+Just you. Like this. Always.
+</p>
+<p>
+And haan…<br>
+my heart is yours now, no return policy 😋💗
+</p>
+<p>— Your baby 🤍</p>`}
+}
+
+function d1(){
+if(i1.value.trim()===door1Answer){alert("Awllle that's my girl😋");level++;load()}
+else alert("buuuhh..\nBery bery disappointing 😓")
+}
+function d2(c){
+if(c===door2Answer){alert("yes thats correct!\nWhy I need reason to love you you are perfect baby💗");level++;load()}
+else alert("Awlee shitt, why you dont know that😓")
+}
+function d3(c){
+if(c===door3Answer){alert("Hehe😋, I know that you will say yus🥰");level++;load()}
+else alert("muz se to koi pyarr hi nhi karta🤧")
+}
+function d4(){
+if(i4.value.trim()===door4Answer){alert("Aww🥹 that’s all I ever wanted to hear 💗");level++;load()}
+else alert("Eh?? Galat jawab 😤\nDobara socho 😌")
+}
+
+load();
+</script>
+
+</body>
+</html>
